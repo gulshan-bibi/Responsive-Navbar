@@ -1,21 +1,31 @@
-const hamburger = document.querySelector('.hamburger');
-const navLinks = document.querySelector('.nav-links');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+body {
+  background: #f5f5f5;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #2c3e50;
+  padding: 15px 30px;
+  color: white;
+}
+.logo { font-size: 24px; font-weight: bold; }
+.nav-links { display: flex; list-style: none; gap: 20px; }
+.nav-links a { color: white; text-decoration: none; }
+.menu-toggle { display: none; font-size: 28px; cursor: pointer; }
 
-hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    
-    // Icon change: bars to X
-    const icon = hamburger.querySelector('i');
-    icon.classList.toggle('fa-bars');
-    icon.classList.toggle('fa-xmark');
-});
-
-// Link pe click karo to menu band ho jaye mobile me
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        const icon = hamburger.querySelector('i');
-        icon.classList.add('fa-bars');
-        icon.classList.remove('fa-xmark');
-    })
-});
+@media (max-width: 768px) {
+  .nav-links {
+    display: none; flex-direction: column;
+    position: absolute; top: 60px; left: 0; width: 100%;
+    background: #34495e; padding: 10px 0;
+  }
+  .nav-links.active { display: flex; }
+  .menu-toggle { display: block; }
+}
